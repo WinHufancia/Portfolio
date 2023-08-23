@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="src/icon.ico">
+    <title>Erwin</title>
+</head>
+<style>
+    :root{
+  --wall-width:1200px ;
+  --black:rgb(27, 26, 26);
+  --white:#f7f7f7;
+  --primary:#773007;
+  --secondary:rgb(172, 69, 0);
+}
+*{
+    margin: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+    background-color: #ffe9ba;
+    scroll-behavior: smooth;
+}
+/* --------------------------- */
+nav{
+    position: fixed;
+    z-index: 2;
+    width: 100% !important;
+    height: 45px;
+    background-color: #ffe9ba;
+    backdrop-filter: blur(25px);
+    border-bottom: rgb(172, 69, 0) 1px solid;
+}
+.nav-body{
+    margin: auto;
+    max-width: var(--wall-width)  ;
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#landpage {
+    height: 100vh;
+    margin: auto;
+    padding: 20px;
+    max-width: var(--wall-width);
+    display: flex;
+    align-items: center;
+}
+#skill {
+    min-height: 100vh;
+    margin: auto;
+    padding: 75px;
+    max-width: var(--wall-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#project::after{
+    position: absolute;
+    content: '';
+    background:#773007;
+    inset: 0;
+    transform: skewY(-4deg);
+    z-index: -2;
+}
+#project{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project-cont{
+    min-height: 100vh;
+    width: var(--wall-width);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#about{
+    margin: auto;
+    padding: 70px 0;
+    max-width: var(--wall-width);
+    min-height: 100vh;
+    background-image: url(src/bacdot.png);
+    background-size:contain;
+}
+#foot{
+    height: 100px;
+    width: 100%;
+    background-color: var(--primary);
+    /* scroll-snap-align: start; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.l{ 
+    margin-left: 15px;
+    width: 70px;
+    height: 18px;
+}
+nav ul{
+    padding-right: 15px;
+    display: flex;
+}
+
+ul li a{
+    text-decoration: none;
+    color: var(--primary);
+    font-size: 14px;
+    /* border: 1px var(--primary) solid; */
+    width: 75px;
+    height: 28px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+ul li {
+    list-style-type: none;
+    
+}
+ul li :hover{
+    cursor: pointer;
+    background-color:var(--primary);
+    border-radius: 2px;
+    color: var(--white);
+    transition: .2s ease-in;
+}
+.checkbtn{
+    display: none;
+    margin-right: 15px;
+    background-image: url(src/menu.png);
+    background-position:center ;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+}
+#check{
+    display: none;
+}
+
+.cursor{
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background:white;
+    transition: 0.1s;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+.intro-cont{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+  
+}
+.prof-cont{
+  
+    position: relative;
+    width: 100%;
+    height: 400px;  
+}
+.img{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+}
+@keyframes rot {
+    0%{
+        transform: translate(-50%,-50%) rotate(0deg);
+    }
+    100%{
+        transform: translate(-50%,-50%) rotate(360deg);
+    }
+}
+.back{
+    width: 430px;
+    height: 430px;
+    animation: rot 30s infinite linear;
+}
+.back1{
+    width: 300px;
+    height: 300px;
+    filter: contrast(200px);
+    animation: rot 20s infinite linear;
+}
+.back2{
+    width: 220px;
+    height: 220px;
+}
+.img:hover{
+    animation-play-state: paused;
+}
+.name-cont{
+    display: flex;
+}
+
+.intro-cont:hover ~ .cursor{
+  transform: scale(5);
+}
+.spark{
+    width: 60px;
+    height: 60px;
+}
+.intro-h1{
+    color: var(--black);
+    font-size:40px;
+}
+.name{
+    margin-left: 15px;
+    color: #773007;
+}
+.intro-p{
+    margin-top: 13px;
+    color: var(--black);
+    line-height: 25px;
+    width: 100%;
+}
+.social{
+    width: 100%;
+    padding: 10px 0;
+}
+.s-img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    color: red;
+}
+
+/* -------------------About Section --------- */
+.logo{
+    margin: auto;
+    display: block;
+    margin-bottom:  8px;
+    width: 50px;
+    height: 48px;
+    
+}
+
+.card-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;  
+}
+/* .card:before{
+    content: '';
+    position: absolute;
+    bottom: -3%;
+    left: 5%;
+    width: 90%;
+    height: 20px;
+    z-index: -3;
+    background: rgba(0, 0, 0, .9);
+    filter: blur(8px);
+} */
+.showcard{
+    border-radius: 5px;
+    position: relative;
+    padding: 20px;
+    width: 270px;
+    height: 330px;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slideup 1.5s ease;
+}
+.card{  
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 20px 30px 20px;
+    width: 270px;
+    height: 330px;
+    background-color: #001747;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(src/card.png);
+    background-size: cover;
+}
+
+.card:hover{ 
+     background-color: var(--secondary);
+}
+@keyframes slideup {
+    0%{
+        transform: translateY(60px);
+    }
+    50%{
+        transform: translateY(-15px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+.mini-img{
+    width: 50px;
+    height: 50px;
+    background-color:var(--white);
+    margin-bottom: 15px
+}
+.mini-p{
+   color: rgb(255, 227, 214);
+   font-size: 14px;
+   line-height: 25px;
+   text-align: center;
+   font-style: italic;
+}
+
+.labout{
+    margin-bottom: 50px;
+    color: rgba(0, 0, 0, .5);
+    font-size: 13px;
+    width: 100%;
+    text-align: center; 
+}
+
+/* -----------------------project---section------------------ */
+.genre{
+    width: 100%;
+    min-height: 200px;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;  
+    margin-bottom: 40px;
+}
+.project-note::before{
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    z-index:-1 ;
+    content: 'PROJECTS';
+    font-size: 80px;
+    font-weight: bold;
+    font-style: normal;
+    color: rgb(158, 63, 0);
+    width: 100%;
+    text-align: right;
+    text-shadow: none;
+}
+.project-note{
+    position: relative;
+    margin: 60px 0 20px 0;
+    color: var(--white);
+    font-size: 30px;
+    font-style: italic;
+    width: 100%;
+    text-align: right;
+    font-family:bermis;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+.web-card{
+    height: 300px;
+    width: 320px;
+    background-color: rgb(253, 252, 255);
+}
+.web-img{
+    background-color: #d14d00;
+    width: inherit;
+    height: 65%;
+    border: #e9e9e9 1px solid;
+    
+}
+.web-box{
+    background-color: #e9e9e9;
+    width: inherit;
+    height: 35%;
+    padding: 10px;
+}
+.webbox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.web-icon{
+    background-color: #d14d00;
+    width: 100%;
+    height: 40px;
+}
+.web-tie{
+    text-indent: 6px;
+    height: 28px;
+    width: 200px;  
+}
+.web-info{
+    margin: 6px 0;
+    padding: 6px 0;
+    font-size: 12px;
+    color: rgb(56, 56, 56);
+    border-top: #c4c4c49c solid 1px;
+}
+.demo{
+    border: 1.5px #000 solid;
+    font-size: 11px;
+    border-radius: 3px;
+    width: 65px;
+    height: 30px;
+    background-color: transparent;
+    transition: 1.5;
+}
+.demo:hover{
+    background-color: #d14d00;
+    border: none;
+    color: var(--white);
+}
+
+.gd-cont{
+    margin: 20px;
+    width: 350px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.h{
+    transition: width .2s ease;
+}
+.h:hover{
+  
+    width: 105%;
+    /* transform: scale(1); */
+}
+
+.skill-cont{
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    background-color: rgb(240, 240, 240);
+    max-width: 700px;
+    min-width: 200px;
+    min-height: 350px ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(133, 49, 0, 0.6);
+    margin-top: 20px;
+}
+.software{
+    padding: 10px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.soft1{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.soft2{
+    margin-top: 5px;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.app{
+    padding: 3px;
+    width: 45px;
+    height: 45px;
+}
+.appname{
+    color: var(--black);
+    width: 100%;
+    height: 24px;
+    font-size: 16px;
+    padding-top: 5px;
+}
+.level{
+    font-size: 12px;
+    color: rgba(75, 75, 75, 0.877);
+    width: 100%;
+    height: 21px;
+    margin-bottom: 10px;
+}
+.skills{
+    position: absolute;
+    top:-30px;
+    font-size: 40px;
+    font-weight: 800;
+    color: #773007;  
+}
+.skill-la{
+    font-style: italic;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 13px;
+    padding: 3px 0 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(133, 133, 133, 0.226);
+
+}
+.soft-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+
+
+
+
+
+
+.whymsg{
+    font-size: 13px;
+    position: relative;
+    margin-top: 40px;
+    color: #141414ab;
+    max-width: 600px;
+    text-align: center;
+    font-style: italic;
+    
+}
+.msg-btn{
+    font-size: 14px;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.295);
+    position: relative;
+    margin: 20px 0;
+    width: 140px;
+    height: 45px;
+    border: none;
+    background-color:var(--primary);
+    color: var(--white);
+    border-radius: 25px;
+    overflow: hidden;
+}
+.msg-btn::before{
+	content: '';
+	position: absolute;
+	top: -30px;
+	left: -100%;
+	width: 100px;
+	height: 100px;
+    transform: rotate(-30deg);
+	background: linear-gradient(90deg,transparent,#f0f0f0be,transparent);
+	transition: 0.5s;
+}
+.msg-btn:hover::before{
+	left: 100%;
+}
+.msg-btn:hover{
+    background-color: var(--secondary);
+}
+
+
+.foot-list{
+    max-width: var(--wall-width);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 5px;
+    
+}
+.list{
+    margin: 10px 0;
+    font-size: 13px;
+    color: rgb(255, 219, 185);
+    list-style-type: none;
+    padding: 6px 15px ;
+    cursor: pointer;
+    
+} 
+.list:hover{
+    border-radius: 3px;
+    background-color:  #200c005e;
+    transition: 0.3s;
+} 
+
+.reserve{
+    margin: 10px 0;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #200c00af;
+
+}
+.reserve:hover{
+    
+    color: #ff6200af;
+
+}
+
+/* ---------------------moda-------------------------------- */
+
+.modal{
+    position: fixed;
+    top: 0px;
+    left:0px;
+    height: 100vh ;
+	width: 100%;
+    z-index: 2;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(27, 13, 0, 0.938);
+}
+.fillup{
+    background-image: url(src/formback.png);
+    background-size: cover;
+    width:600px;
+    height: 350px;
+	position: relative;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+	background-color: whitesmoke;
+	border-radius: 8px;
+	border: 1px solid var(--secondary);
+    padding-top: 20px;
+}
+.msg{
+    width: 100%;
+    text-align: center;
+    color: #773007;
+    margin: 5px 0 20px 0;
+}
+
+.abe{
+    margin-top: 50px;
+	font-size: 12px;
+    letter-spacing: 2px;	
+	color:var(--primary);
+}
+
+
+
+
+
+
+
+
+@media(max-width:1200px) {
+    .checkbtn{
+        display: block;
+    }  
+    nav ul{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background: #773007;
+        top:45px;
+        display: block;
+        left:-100vw;
+        transition: all ease .5s;
+        padding: 0;
+    }  
+    nav ul li a{
+        font-size:20px ;
+        padding: 30px 0;
+        width: 100%;
+        text-align: center;
+        border: none;
+        color: rgb(255, 227, 190);   
+    }
+    nav ul li a:hover{
+        cursor: pointer;
+        background-color:rgb(85, 31, 0);
+    }
+    .back{
+        width: 220px;
+        height: 220px;
+        animation: rot 25s infinite linear;
+    }
+    .back1{
+        width: 155px;
+        height: 155px;
+        animation: rot 15s infinite linear;
+    }
+    .back2{
+        width: 120px;
+        height: 120px;
+    }
+    .spark{
+        height: 40px;
+        width: 40px;
+    }
+    .cursor{
+        display: none;
+    }
+    .intro-cont{
+        width: 100%;
+    }
+    .intro-h1{
+        font-size: 30px;
+    }
+    .intro-p{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    #landpage{
+        display: flex; 
+        flex-direction: column-reverse;
+        justify-content: center;
+
+    }
+    #about{
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    nav.nav-body , #project, #about, #skill, #foot, #landpage{
+        width:100% !important ;
+       
+    }
+    
+}
+
+
+</style>
+<body>
+
+    <nav>
+         <div class="nav-body">   
+            <img src="src/brand.png" alt="logo" class="l">
+            <input type="checkbox" id="check" >
+            <label for="check" class="checkbtn" onclick="menu()"></label>
+            <ul id="nav_b">
+            <li><a href="#about" onclick="menu()">About</a></li>
+            <li><a href="#project" onclick="menu()">Project</a></li>
+            <li><a href="#skill" onclick="menu()">Skill</a></li>
+            <li><a href="#skill" onclick="menu()">Contact</a></li>
+            </ul>
+        </div> 
+    </nav>
+
+<div id="landpage" >
+    <div class="intro-cont">
+        <div class="name-cont">
+        <h2 class="intro-h1">Hello</h2>
+        <img src="src/spark.png" alt="spark" class="spark">
+        </div>
+        <div class="name-cont">
+            <h1 class="intro-h1 n1">I am</h1>
+            <h1 class="intro-h1 name">Erwin Hufancia</h1>
+        </div>
+        <p class="intro-p">A dynamic individual driven a relentless pursuit of personal and professional growth, with a diverse set skills and a passion in designing.</p> 
+        <div class="social">
+            <a href="https://github.com/WinHufancia"><img src="src/github-box.png" alt="" class="s-img"></a>
+            <a href="https://www.linkedin.com/in/erwin-hufancia-3b6474270"><img src="src/linkedin.png" alt="" class="s-img"></a>
+           
+        </div>           
+        
+    </div>
+    <div class="cursor"></div>
+    <div class="prof-cont">
+      <img src="src/back.png" alt="" class="img back">
+      <img src="src/back1.png" alt="" class="img back1">
+      <img src="src/back2.png" alt="" class="img back2">
+    </div>
+</div>
+
+<div id="about">
+    <img src="src/c.png" alt="" class="logo">
+    <p class="labout">My development process in designing</p>
+    <div class="card-cont">
+        <article class="card card1">
+            <!-- <img src="" alt="" class="mini-img mini1"> -->
+            <p class="mini-p"> In the past, I developed a passion for art and design during my high school years. I enjoyed sketching, experimenting with colors, and creating visually appealing compositions. This early interest in creativity sparked my desire to become a graphic designer.</p>
+        </article>
+        <article class="card card1">
+            <!-- <img src="" alt="" class="mini-img mini2"> -->
+            <p class="mini-p">I decided to pursue my dream by enrolling in Computer Science Course at a local college because that is the only available course that is related to designing. I learned the fundamentals of computer so i can be familiarize with the softwares and tools in digital design, I also gained proficiency in design software such as Adobe Illustrator and Photoshop.            </p>
+        </article>
+        <article class="card card1">
+            <!-- <img src="" alt="" class="mini-img mini3"> -->
+            <p class="mini-p">I plan to continue building my portfolio with a diverse range of projects, pushing the boundaries of my creativity, and exploring new design techniques and styles. Additionally, I'm considering further education or certifications in specialized areas of design to expand my skill set and stay competitive in the field.</p>
+        </article>
+    </div>
+    
+</div>
+
+<div id="project">
+    <div class="project-cont">
+        
+
+        <p  class="project-note">Graphic Design</p>
+        <div class="genre graphic">
+            <div class="gd-cont">
+                <img src="src/graphic/mug.png" alt="" width="100%" class="h" >
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Earthquake.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/extinguisher.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Fire.jpg" alt="" width="100%" class="h">
+            </div>
+
+        <p  class="project-note">Sample Design</p>
+            <div class="gd-cont">
+                <img src="src/graphic/shoe.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Lipstick.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Guitar.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Coffee.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/shoev.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/fashion.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/burger.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Apartment.jpg" alt="" width="100%" class="h">
+            </div>
+            <div class="gd-cont">
+                <img src="src/graphic/Phone.jpg" alt="" width="100%" class="h">
+            </div>
+            
+           
+        </div>
+    </div>
+</div>
+
+<div id="skill">
+    
+    <div class="skill-cont">
+        <h1 class="skills">Tech Stacks</h1>
+
+        <div class="software">
+            <h3 class="skill-la">Editing</h3>
+            <div class="soft-box">
+                <div class="soft1">       
+                    <img src="src/ps.png" alt="" class="app">
+                    <img src="src/Ai.png" alt="" class="app">
+                    <img src="src/xd.png" alt="" class="app">
+                    <img src="src/MS Office.png" alt="" class="app">
+                    <img src="src/Auto CAD.png" alt="" class="app">
+                </div>
+                <div class="soft2">
+                    <h3 class="appname">Photoshop</h3>
+                    <p class="level">Advance</p>
+                    <h3 class="appname">Illustrator</h3>
+                    <p class="level">Intermediate</p>
+                    <h3 class="appname">Adobe XD</h3>
+                    <p class="level">Advance</p>
+                    <h3 class="appname">MS Office</h3>
+                    <p class="level">Intermediate</p>
+                    <h3 class="appname">Auto CAD</h3>
+                    <p class="level">Beginner</p>
+                </div>
+            </div>
+            
+        </div>
+
+       
+    </div>
+    <p class="whymsg"><b> Thank you! </b>for visiting my porfolio. If you have any questions
+         or require any additional information please dont hesitate to reach out to me. I'll look forward to hearing from you soon.</p>
+    <button class="msg-btn" onclick="showModal()">Message me</button>
+</div>
+
+<footer id="foot">
+    
+    <p class="reserve">Copyright @erwinhufancia 2023</p>
+</footer>
+
+        <div class="modal">
+            <form  class="fillup">  
+                
+                    <center><label class="abe">Contact me</label></center>
+                    <h1 class="msg">erwinhufancia11@gmail.com</h1>
+                    <center><button class="msg-btn" onclick="hideModal()">Close</button></center>
+               
+            </form> 
+        </div>
+
+</body>
+</html>
+
+<script >
+    
+const menubtn=document.querySelector("#check");
+const navigation=document.querySelector("ul");
+function menu(){
+    if (menubtn.checked==true){
+        navigation.style.left="0px";
+    }else{
+        navigation.style.left="-100vw";
+    }
+}
+
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove', (e)=>{
+    cursor.style.left=e.pageX+'px';
+    cursor.style.top=e.pageY+'px';
+})
+
+const observer = new IntersectionObserver((entries) =>{
+    entries.forEach((entry)=>{
+        if (entry.isIntersecting){
+            entry.target.classList.add('showcard');
+        }else{
+            entry.target.classList.remove('showcard');
+        }
+    });
+});
+const card =document.querySelectorAll('.card');
+card.forEach((el)=>observer.observe(el));
+
+
+const modal = document.querySelector(".modal");
+function hideModal(){
+    modal.style.display="none";
+}
+function showModal(){
+    modal.style.display="flex";
+}
+
+
+
+
+
+</script>
